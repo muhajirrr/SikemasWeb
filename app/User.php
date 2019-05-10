@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'no_identitas', 'name', 'type', 'password',
     ];
 
     /**
@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function kelas() {
+        return $this->belongsToMany(Kelas::class, 'mahasiswa_kelas', 'user_id', 'kelas_id');
+    }
 }
