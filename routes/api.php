@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/kelas_active', 'Api\KelasActive\KelasActiveController@index');
+Route::get('/kelas', 'Api\Kelas\KelasController@index');
