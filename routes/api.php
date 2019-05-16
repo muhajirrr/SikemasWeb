@@ -17,5 +17,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/kelas_active', 'Api\KelasActive\KelasActiveController@index');
-Route::get('/kelas', 'Api\Kelas\KelasController@index');
+Route::namespace('Api')->group(function() {
+    Route::namespace('Auth')->prefix('auth')->group(function() {
+        Route::post('/login', 'AuthController@login');
+
+        Route::middleware('auth:api')->group(function() {
+            Route::get('/logout', 'AuthController@logout');
+        });
+    });
+
+    Route::middleware(['auth:api'])->group(function() {
+        Route::namespace('KelasActive')->prefix('kelas_active')->group(function() {
+            Route::get('/', 'KelasActiveController@index');
+        });
+
+        Route::namespace('Kelas')->prefix('kelas')->group(function() {
+            Route::get('/', 'KelasController@index');
+        });
+    });
+});
+

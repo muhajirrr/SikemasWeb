@@ -10,11 +10,10 @@ use App\Http\Resources\KelasResource;
 
 class KelasController extends Controller
 {
-    public function index() {
-        
+    public function index(Request $request) {
         try {
             $hari = request('hari');
-            $user = User::where('no_identitas', '05111640000104')->firstOrFail();
+            $user = $request->user();
         
             $kelas = $user->kelas()->whereHari($hari)->get();
 

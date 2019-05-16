@@ -10,9 +10,9 @@ use App\Http\Resources\KelasActiveResource;
 
 class KelasActiveController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         try {
-            $user = User::where('no_identitas', '05111640000104')->firstOrFail();
+            $user = $request->user();
         
             $kelas_ids = $user->kelas->pluck('id')->toArray();
             $kelas_active = KelasActive::whereIn('kelas_id', $kelas_ids)->get();
