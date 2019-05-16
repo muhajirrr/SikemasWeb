@@ -30,9 +30,12 @@ class AuthController extends Controller
             $token->save();
 
             return response()->json([
-                'token_type' => 'Bearer',
-                'access_token' => $tokenResult->accessToken,
-                'user' => $user
+                'status' => 'success',
+                'data' => [
+                    'token_type' => 'Bearer',
+                    'access_token' => $tokenResult->accessToken,
+                    'user' => $user
+                ]
             ]);
         } catch(\Exception $e) {
             return response()->json([

@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('no_identitas', 20)->unique();
             $table->string('name');
-            $table->enum('type', ['dosen', 'mahasiswa']);
+            $table->enum('type', ['admin', 'dosen', 'mahasiswa']);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
