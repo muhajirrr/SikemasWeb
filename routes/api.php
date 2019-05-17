@@ -39,6 +39,11 @@ Route::namespace('Api')->group(function() {
             Route::namespace('Kelas')->prefix('kelas')->group(function() {
                 Route::get('/', 'KelasController@index');
             });
+
+            Route::namespace('KelasActive')->prefix('kelas_active')->group(function() {
+                Route::post('/store', 'KelasActiveController@store');
+                Route::post('/update', 'KelasActiveController@update');
+            });
         });
     });
 });
