@@ -21,6 +21,7 @@ class KelasActiveResource extends JsonResource
             'ruangan' => $this->ruangan,
             'status' => $this->status,
             'pertemuan' => $this->pertemuan,
+            'status_absen' => $this->status_absen,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->update_at,
         ];
