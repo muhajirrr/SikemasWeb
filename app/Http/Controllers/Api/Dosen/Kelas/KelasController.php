@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api\KelasActive;
+namespace App\Http\Controllers\Api\Dosen\Kelas;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\KelasActive;
-use App\Http\Resources\KelasActiveResource;
-use Carbon\Carbon;
+use App\Http\Resources\KelasResource;
 
-class KelasActiveController extends Controller
+class KelasController extends Controller
 {
     public function index(Request $request) {
         try {
+            $hari = strtolower(request('hari'));
             $user = $request->user();
         
-            $kelas_ids = $user->kelas->pluck('id')->toArray();
-            $kelas_active = KelasActive::whereIn('kelas_id', $kelas_ids)->where('status', 1)->whereDate('created_at', Carbon::now())->get();
+            $kelas = $user->kelas_dosen()->whereHari($hari)->get();
 
-            $kelas_resource = KelasActiveResource::collection($kelas_active);
+            $kelas_resource = KelasResource::collection($kelas);
             return response()->json([
                 'status' => 'success',
                 'data' => $kelas_resource

@@ -41,4 +41,8 @@ class User extends Authenticatable
     public function kelas() {
         return $this->belongsToMany(Kelas::class, 'mahasiswa_kelas', 'user_id', 'kelas_id');
     }
+
+    public function kelas_dosen() {
+        return $this->hasMany(Kelas::class, 'dosen_id');
+    }
 }
