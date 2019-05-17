@@ -35,6 +35,10 @@ Route::namespace('Api')->group(function() {
             Route::get('/', 'KelasController@index');
         });
 
+        Route::namespace('Kehadiran')->prefix('kehadiran')->group(function() {
+            Route::post('/store', 'KehadiranController@store');
+        });
+
         Route::namespace('Dosen')->prefix('dosen')->group(function() {
             Route::namespace('Kelas')->prefix('kelas')->group(function() {
                 Route::get('/', 'KelasController@index');
