@@ -36,6 +36,7 @@ Route::namespace('Api')->group(function() {
         });
 
         Route::namespace('Kehadiran')->prefix('kehadiran')->group(function() {
+            Route::get('/', 'KehadiranController@index');
             Route::post('/store', 'KehadiranController@store');
         });
 
